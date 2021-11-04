@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../../services/api.service";
 import {CartService} from "../../services/cart.service";
+import {Emitters} from "../../schema/emitters";
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,8 @@ export class ProductsComponent implements OnInit {
   public elecFlag: boolean = false;
   public fashionFlag: boolean = false;
   public jewFlag: boolean = false;
+  public userFlag: boolean = false;
+  public adminFlag: boolean = false;
 
   constructor(
     private _apiService: ApiService,
@@ -39,6 +42,16 @@ export class ProductsComponent implements OnInit {
 
     this._cartService.search.subscribe(value => {
       this.searchKey = value;
+    });
+
+    Emitters.usernameEmitter.subscribe((username: string) => {
+      if(username === 'user'){
+        this.userFlag = true;
+        this.adminFlag = false;
+      } else if(username === 'admin'){
+        this.userFlag = false;
+        this.adminFlag = true;
+      }
     });
 
   }

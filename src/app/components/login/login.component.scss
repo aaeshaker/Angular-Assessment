@@ -1,0 +1,19 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  color: #212529;
+}
+
+.form-floating {
+  margin-bottom: .8vw;
+
+  input {
+    border-radius: 0.3rem;
+  }
+}
+

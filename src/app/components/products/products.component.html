@@ -1,56 +1,56 @@
 <div class="menu-padding">
 
 
-  <div class="container-fluid">
-    <ul class="d-flex">
-      <li class="item">
-        <a (click)="filter('')" [ngClass]="{ 'active': allProdFlag, 'in-active': !allProdFlag }">
-          <h6>All products</h6>
-        </a>
-      </li>
-      <li class="item">
-        <a (click)="filter('electronics')" [ngClass]="{ 'active': elecFlag, 'in-active': !elecFlag }">
-          <h6>Electronics</h6>
-        </a>
-      </li>
-      <li class="item">
-        <a (click)="filter('fashion')" [ngClass]="{ 'active': fashionFlag, 'in-active': !fashionFlag }">
-          <h6>Fashion</h6>
-        </a>
-      </li>
-      <li class="item">
-        <a (click)="filter('jewelery')" [ngClass]="{ 'active': jewFlag, 'in-active': !jewFlag }">
-          <h6>Jewellery</h6>
-        </a>
-      </li>
-    </ul>
-    <hr>
-  </div>
+    <div class="container-fluid">
+      <ul class="d-flex">
+        <li class="item">
+          <a (click)="filter('')" [ngClass]="{ 'active': allProdFlag, 'in-active': !allProdFlag }">
+            <h6>All products</h6>
+          </a>
+        </li>
+        <li class="item">
+          <a (click)="filter('electronics')" [ngClass]="{ 'active': elecFlag, 'in-active': !elecFlag }">
+            <h6>Electronics</h6>
+          </a>
+        </li>
+        <li class="item">
+          <a (click)="filter('fashion')" [ngClass]="{ 'active': fashionFlag, 'in-active': !fashionFlag }">
+            <h6>Fashion</h6>
+          </a>
+        </li>
+        <li class="item">
+          <a (click)="filter('jewelery')" [ngClass]="{ 'active': jewFlag, 'in-active': !jewFlag }">
+            <h6>Jewellery</h6>
+          </a>
+        </li>
+      </ul>
+      <hr>
+    </div>
 
-  <div class="container-fluid">
-    <div class="row">
-      <ng-container *ngFor="let productItem of filterCategory | filter: searchKey: 'title'">
-        <div class="col-md-3 mb-3">
-          <div class="card">
+    <div class="container-fluid">
+      <div class="row">
+        <ng-container *ngFor="let productItem of filterCategory | filter: searchKey: 'title'">
+          <div class="col-md-3 mb-3">
+            <div class="card">
 
-            <div>
-              <div class="d-flex justify-content-center">
-                <img src="{{ productItem.image }}" alt="Product Image">
+              <div>
+                <div class="d-flex justify-content-center">
+                  <img src="{{ productItem.image }}" alt="Product Image">
+                </div>
+                <div class="card-text">
+                  <h5>{{ productItem.title }}</h5>
+                  <p class="desc">{{ productItem.description }}</p>
+                  <p><strong style="color: #212529">Price:</strong> ${{ productItem.price }}</p>
+                </div>
               </div>
-              <div class="card-text">
-                <h5>{{ productItem.title }}</h5>
-                <p class="desc">{{ productItem.description }}</p>
-                <p><strong style="color: #212529">Price:</strong> ${{ productItem.price }}</p>
-              </div>
+              <button class="btn btn-primary" (click)="addToCart(productItem)">Add to cart</button>
+
             </div>
-            <button class="btn btn-primary" (click)="addToCart(productItem)">Add to cart</button>
 
           </div>
-
-        </div>
-      </ng-container>
+        </ng-container>
+      </div>
     </div>
-  </div>
 
 
 </div>
