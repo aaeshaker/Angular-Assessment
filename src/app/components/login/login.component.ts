@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .login(this.form.value)
       .pipe(
         // delay(1500),
-        tap(() => this._router.navigate(['/home'])),
+        tap(() => this._router.navigate(['/products'])),
         // finalize(() => (this.isLoading = false)),
         catchError(error => of((this.error = error)))
       )
@@ -52,6 +52,5 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._sub.unsubscribe();
-    // Emitters.authEmitter.emit(false);
   }
 }

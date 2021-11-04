@@ -1,57 +1,138 @@
 <div class="menu-padding">
 
+  <ng-container *ngIf="username === 'user'">
+    <div class="user">
 
-    <div class="container-fluid">
-      <ul class="d-flex">
-        <li class="item">
-          <a (click)="filter('')" [ngClass]="{ 'active': allProdFlag, 'in-active': !allProdFlag }">
-            <h6>All products</h6>
-          </a>
-        </li>
-        <li class="item">
-          <a (click)="filter('electronics')" [ngClass]="{ 'active': elecFlag, 'in-active': !elecFlag }">
-            <h6>Electronics</h6>
-          </a>
-        </li>
-        <li class="item">
-          <a (click)="filter('fashion')" [ngClass]="{ 'active': fashionFlag, 'in-active': !fashionFlag }">
-            <h6>Fashion</h6>
-          </a>
-        </li>
-        <li class="item">
-          <a (click)="filter('jewelery')" [ngClass]="{ 'active': jewFlag, 'in-active': !jewFlag }">
-            <h6>Jewellery</h6>
-          </a>
-        </li>
-      </ul>
-      <hr>
-    </div>
+      <div class="container-fluid">
 
-    <div class="container-fluid">
-      <div class="row">
-        <ng-container *ngFor="let productItem of filterCategory | filter: searchKey: 'title'">
-          <div class="col-md-3 mb-3">
-            <div class="card">
+        <!--    Filter-->
+        <ul class="d-flex">
+          <li class="item">
+            <a (click)="filter('')" [ngClass]="{ 'active': allProdFlag, 'in-active': !allProdFlag }">
+              <h6>All products</h6>
+            </a>
+          </li>
+          <li class="item">
+            <a (click)="filter('electronics')" [ngClass]="{ 'active': elecFlag, 'in-active': !elecFlag }">
+              <h6>Electronics</h6>
+            </a>
+          </li>
+          <li class="item">
+            <a (click)="filter('fashion')" [ngClass]="{ 'active': fashionFlag, 'in-active': !fashionFlag }">
+              <h6>Fashion</h6>
+            </a>
+          </li>
+          <li class="item">
+            <a (click)="filter('jewelery')" [ngClass]="{ 'active': jewFlag, 'in-active': !jewFlag }">
+              <h6>Jewellery</h6>
+            </a>
+          </li>
+        </ul>
 
-              <div>
-                <div class="d-flex justify-content-center">
-                  <img src="{{ productItem.image }}" alt="Product Image">
+        <hr>
+
+        <!--  Products  -->
+        <div class="row">
+          <ng-container *ngFor="let productItem of filterCategory | filter: searchKey: 'title'">
+            <div class="col-md-3 mb-3">
+              <div class="card">
+
+                <div>
+                  <div class="d-flex justify-content-center">
+                    <img src="{{ productItem.image }}" alt="Product Image">
+                  </div>
+                  <div class="card-text">
+                    <h5>{{ productItem.title }}</h5>
+                    <p class="desc">{{ productItem.description }}</p>
+                    <p><strong style="color: #212529">Price:</strong> ${{ productItem.price }}</p>
+                  </div>
                 </div>
-                <div class="card-text">
-                  <h5>{{ productItem.title }}</h5>
-                  <p class="desc">{{ productItem.description }}</p>
-                  <p><strong style="color: #212529">Price:</strong> ${{ productItem.price }}</p>
-                </div>
+                <button class="btn btn-primary" (click)="addToCart(productItem)">Add to cart</button>
+
               </div>
-              <button class="btn btn-primary" (click)="addToCart(productItem)">Add to cart</button>
-
             </div>
+          </ng-container>
+        </div>
 
-          </div>
-        </ng-container>
       </div>
     </div>
+  </ng-container>
 
+
+  <ng-container>
+    <div class="admin">
+      <ng-container *ngIf="username === 'admin'">
+
+        <div class="container-fluid">
+          <div class="card-table">
+            <div class="card-product">
+              <table class="table table-responsive">
+
+                <thead>
+                <tr>
+                  <th class="t-center">Sr.No</th>
+                  <th class="t-center">Product Name</th>
+                  <th class="t-center">Product Image</th>
+                  <th>Description</th>
+                  <th class="t-center">Price</th>
+                  <th class="t-center">Quantity</th>
+                  <th class="t-center">Total</th>
+                  <th class="t-center">Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr *ngFor="let productItem of productList; let i = index">
+                  <td class="t-center">{{ i + 1 }}</td>
+                  <td class="t-center" style="width: 15%">{{ productItem.title }}</td>
+                  <td class="t-center" style="width: 12%"><img src="{{ productItem.image }}" alt=""></td>
+                  <td style="width: 35%">{{ productItem.description }}</td>
+                  <td class="t-center">{{ productItem.price }}</td>
+                  <td class="t-center">{{ productItem.quantity }}</td>
+                  <td class="t-center">{{ productItem.total }}</td>
+                  <td class="t-center">
+                    <button (click)="removeItem(productItem)" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                    </button>
+                  </td>
+                  <td class="t-center">
+                    <button class="btn btn-primary"><i class="fas fa-pen"></i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+
+              </table>
+
+              <div class="buttons">
+                <!--<button (click)="deleteAllProducts()" class="btn btn-danger">Empty Products</button>-->
+                <button (click)="addNewProduct()" class="btn btn-success">Add Product</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+
+
+      <ng-container *ngIf="false">
+        <div class="container">
+          <div class="card">
+            <h5 class="card-title">My Cart</h5>
+          </div>
+          <div class="center">
+            <img
+              src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+              alt="">
+            <h4>Your cart is empty!</h4>
+            <h6>Add item to it now</h6>
+            <button routerLink="/products" class="btn btn-primary">Shop Now</button>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+  </ng-container>
 
 </div>
 

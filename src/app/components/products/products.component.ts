@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../../services/api.service";
 import {CartService} from "../../services/cart.service";
-import {Emitters} from "../../schema/emitters";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-products',
@@ -10,48 +10,62 @@ import {Emitters} from "../../schema/emitters";
 })
 export class ProductsComponent implements OnInit {
 
-  public productList: any;
+  public productList: any = [];
   public searchKey: string = '';
-  public filterCategory: any;
+  public filterCategory: any = [];
   public allProdFlag: boolean = true;
   public elecFlag: boolean = false;
   public fashionFlag: boolean = false;
   public jewFlag: boolean = false;
-  public userFlag: boolean = false;
-  public adminFlag: boolean = false;
+  public username: string = '';
+  public staticAddedProduct: any;
 
   constructor(
     private _apiService: ApiService,
-    private _cartService: CartService) {
+    private _cartService: CartService,
+    private _authService: AuthService
+  ) {
   }
 
   ngOnInit(): void {
 
-    this._apiService.getProducts().subscribe(res => {
-      this.productList = res;
-      this.filterCategory = res;
-      console.log(this.productList);
+    // Due to time I've used this static product instead of form
+    this.staticAddedProduct = {
+      category: "fashion",
+      description: "Organic Cotton T-Shirt",
+      id: 1,
+      image: "https://m.media-amazon.com/images/I/51v80n-ixzS._AC_UX342_.jpg",
+      price: 18,
+      quantity: 1,
+      rating: {rate: 4.9, count: 100},
+      title: "Organic Cotton T-Shirt for Men.",
+      total: 18
+    };
 
-      this.productList.forEach((element: any) => {
-        if (element.category === "women's clothing" || element.category === "men's clothing") {
-          element.category = 'fashion';
-        }
-        Object.assign(element, {quantity: 1, total: element.price});
-      });
+    this._apiService.loadingScreen();
+
+    this.username = this._authService.getCurrentUser();
+
+    this._apiService.getProducts().subscribe(res => {
+
+      if (res) {
+        this._apiService.hideLoading();
+        this.productList = res;
+        this.filterCategory = res;
+        console.log(this.filterCategory);
+
+        this.productList.forEach((element: any) => {
+          if (element.category === "women's clothing" || element.category === "men's clothing") {
+            element.category = 'fashion';
+          }
+          Object.assign(element, {quantity: 1, total: element.price});
+        });
+      }
+
     });
 
     this._cartService.search.subscribe(value => {
       this.searchKey = value;
-    });
-
-    Emitters.usernameEmitter.subscribe((username: string) => {
-      if(username === 'user'){
-        this.userFlag = true;
-        this.adminFlag = false;
-      } else if(username === 'admin'){
-        this.userFlag = false;
-        this.adminFlag = true;
-      }
     });
 
   }
@@ -90,5 +104,18 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
+
+  public removeItem(productItem: any) {
+    this._apiService.removeProductItem(productItem);
+  }
+
+  public addNewProduct() {
+    this._apiService.addNewProduct(this.staticAddedProduct);
+  }
+
+  // public deleteAllProducts() {
+  //   this._apiService.removeAllProducts();
+  //   console.log(this.productList);
+  // }
 
 }

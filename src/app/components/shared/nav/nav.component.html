@@ -3,7 +3,7 @@
 
     <div class="d-flex align-items-center">
       <a class="navbar-brand">Hi {{ username }}</a>
-      <div class="input-group flex-nowrap">
+      <div *ngIf="username === 'user'" class="input-group flex-nowrap">
         <input [(ngModel)]="searchTerm" (keyup)="search($event)" type="text" class="form-control"
                placeholder="search products" aria-label="Search"
                aria-describedby="addon-wrapping">
@@ -17,7 +17,7 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/" (click)="logout()">Logout</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="username === 'user'" class="nav-item">
           <a routerLink="/cart" class="cart">
             <i class="fas fa-shopping-cart"></i>
             <span class="badge bg-danger">{{ totalItems }}</span>

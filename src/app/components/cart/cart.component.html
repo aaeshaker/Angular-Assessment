@@ -9,35 +9,42 @@
 
             <thead>
             <tr>
-              <th>Sr.No</th>
-              <th>Product Name</th>
-              <th>Product Image</th>
+              <th class="t-center">Sr.No</th>
+              <th class="t-center">Product Name</th>
+              <th class="t-center">Product Image</th>
               <th>Description</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th>Action</th>
+              <th class="t-center">Price</th>
+              <th class="t-center">Quantity</th>
+              <th class="t-center">Total</th>
+              <th class="t-center">Action</th>
             </tr>
             </thead>
 
             <tbody>
             <tr *ngFor="let productItem of products; let i = index">
-              <td>{{ i + 1 }}</td>
-              <td style="width: 15%">{{ productItem.title }}</td>
-              <td style="width: 12%"><img src="{{ productItem.image }}" alt=""></td>
+              <td class="t-center">{{ i + 1 }}</td>
+              <td class="t-center" style="width: 15%">{{ productItem.title }}</td>
+              <td class="t-center" style="width: 12%"><img src="{{ productItem.image }}" alt=""></td>
               <td style="width: 35%">{{ productItem.description }}</td>
-              <td style="width: 12%">{{ productItem.price }}</td>
-              <td style="width: 12%">{{ productItem.quantity }}</td>
-              <td style="width: 12%">{{ productItem.total }}</td>
-              <td>
-                <button (click)="removeItem(productItem)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+              <td class="t-center">{{ productItem.price }}</td>
+              <td class="t-center">{{ productItem.quantity }}</td>
+              <td class="t-center">{{ productItem.total }}</td>
+              <td class="t-center">
+                <button (click)="removeItem(productItem)" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                </button>
               </td>
             </tr>
             <tr>
               <td colspan="4"></td>
-              <td><button (click)="emptyCart()" class="btn btn-danger">Empty Cart</button></td>
-              <td><button routerLink="/home" class="btn btn-primary">Shop More</button></td>
-              <td><button class="btn btn-success">Checkout</button></td>
+              <td>
+                <button (click)="emptyCart()" class="btn btn-danger">Empty Cart</button>
+              </td>
+              <td>
+                <button routerLink="/home" class="btn btn-primary">Shop More</button>
+              </td>
+              <td>
+                <button class="btn btn-success">Checkout</button>
+              </td>
               <td><strong>Grand Total: ${{ grandTotal }}</strong></td>
             </tr>
             </tbody>
@@ -61,7 +68,7 @@
           alt="">
         <h4>Your cart is empty!</h4>
         <h6>Add item to it now</h6>
-        <button routerLink="/home" class="btn btn-primary">Shop Now</button>
+        <button routerLink="/products" class="btn btn-primary">Shop Now</button>
       </div>
     </div>
   </ng-container>

@@ -3,6 +3,7 @@ import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 import {Emitters} from "../../../schema/emitters";
 import {CartService} from "../../../services/cart.service";
+import {ApiService} from "../../../services/api.service";
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,7 @@ import {CartService} from "../../../services/cart.service";
 })
 export class NavComponent implements OnInit {
 
-  public authenticated = false;
+  public authenticated: boolean = false;
   public username!: string;
   public totalItems: number = 0;
   public searchTerm: string = '';
@@ -19,19 +20,24 @@ export class NavComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _route: Router,
-    private _cartService: CartService
+    private _cartService: CartService,
+    private _apiService: ApiService
   ) {
+    if(this._authService.getCurrentUser()){
+      this.authenticated = true;
+    }
   }
 
   ngOnInit(): void {
 
     Emitters.authEmitter.subscribe((auth: boolean) => {
       this.authenticated = auth;
+      console.log('auth', auth);
+      if (auth) {
+        this.username = this._authService.getCurrentUser();
+      }
     });
 
-    Emitters.usernameEmitter.subscribe((username: string) => {
-      this.username = username;
-    });
 
     this._cartService.getProducts().subscribe(res => {
       this.totalItems = res.length;
@@ -40,7 +46,7 @@ export class NavComponent implements OnInit {
   }
 
   public logout() {
-    Emitters.authEmitter.emit(false);
+    this._authService.logout();
     this._route.navigate(['']).then();
   }
 

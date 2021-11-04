@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, of, throwError} from "rxjs";
 import {User} from "../schema/user";
+import {Router} from "@angular/router";
 import {Emitters} from "../schema/emitters";
 
 const User = {
@@ -18,7 +19,7 @@ const Admin = {
 })
 export class AuthService {
 
-  constructor() {
+  constructor(private _route: Router) {
   }
 
   login(loginContext: User): Observable<User> {
@@ -32,17 +33,28 @@ export class AuthService {
       loginContext.password === Admin.password;
 
     if (isUser) {
+      localStorage.setItem('currentUser', JSON.stringify({username: User.username}));
       Emitters.authEmitter.emit(true);
-      Emitters.usernameEmitter.emit(User.username);
       return of(User);
     } else if (isAdmin) {
+      localStorage.setItem('currentUser', JSON.stringify({username: Admin.username}));
       Emitters.authEmitter.emit(true);
-      Emitters.usernameEmitter.emit(Admin.username);
       return of(Admin);
     }
 
-    Emitters.authEmitter.emit(false);
     return throwError('Invalid username or password');
+  }
+
+  getCurrentUser() {
+    // @ts-ignore
+    return JSON.parse(localStorage.getItem('currentUser')).username;
+  }
+
+  logout() {
+    Emitters.authEmitter.emit(false);
+    this._route.navigate(['/']).then();
+    // @ts-ignore
+    return JSON.parse(localStorage.clear());
   }
 
 
