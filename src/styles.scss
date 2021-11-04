@@ -218,5 +218,60 @@ a:hover {
   }
 }
 
+//  Responsive
+
+@media only screen and (max-width: 1024px) {
+
+  .menu-padding {
+    padding-top: 10vw;
+    padding-bottom: 4.610966057441253vw;
+  }
+
+  h4 {
+    font-size: 4vw;
+  }
+
+  h5 {
+    font-size: 3.5vw;
+  }
+
+  h6 {
+    font-size: 2.8vw;
+  }
+
+  p {
+    font-size: 2.2vw;
+  }
+
+  .form-control {
+    font-size: 1.4rem;
+  }
+
+
+}
+
+@media only screen and (max-width: 767px) {
+
+  h4 {
+    font-size: 5vw;
+  }
+
+  h5 {
+    font-size: 4.5vw;
+  }
+
+  h6 {
+    font-size: 3.8vw;
+  }
+
+  p {
+    font-size: 3.2vw;
+  }
+
+  .form-control {
+    font-size: 1rem;
+  }
+}
+
 
 

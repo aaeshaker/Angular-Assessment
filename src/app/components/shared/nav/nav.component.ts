@@ -25,6 +25,9 @@ export class NavComponent implements OnInit {
   ) {
     if(this._authService.getCurrentUser()){
       this.authenticated = true;
+      this.username = this._authService.getCurrentUser();
+    }else {
+      this.authenticated = false;
     }
   }
 
@@ -32,12 +35,11 @@ export class NavComponent implements OnInit {
 
     Emitters.authEmitter.subscribe((auth: boolean) => {
       this.authenticated = auth;
-      console.log('auth', auth);
-      if (auth) {
+      if(auth){
         this.username = this._authService.getCurrentUser();
       }
+      console.log('auth', auth);
     });
-
 
     this._cartService.getProducts().subscribe(res => {
       this.totalItems = res.length;
@@ -46,6 +48,7 @@ export class NavComponent implements OnInit {
   }
 
   public logout() {
+    this.authenticated = false;
     this._authService.logout();
     this._route.navigate(['']).then();
   }

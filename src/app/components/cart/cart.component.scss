@@ -65,3 +65,70 @@
 .t-center {
   text-align: center;
 }
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    margin: 0 1vw 1.2vw 1vw;
+  }
+}
+
+//  Responsive
+
+@media only screen and (max-width: 1024px) {
+
+  .card {
+    height: 85vh;
+    padding: 2.5vw 0 0vw 4vw;
+  }
+
+  .center {
+
+    //img {
+    //  height: 162px;
+    //  width: 250px;
+    //  margin: 20px 0;
+    //}
+
+    h6 {
+      padding: 3vw 0;
+    }
+
+    .btn {
+      font-size: 2.8vw !important;
+    }
+  }
+
+  //.card-table {
+  //  position: relative;
+  //  display: flex;
+  //  flex-direction: column;
+  //  min-width: auto;
+  //  word-wrap: break-word;
+  //  background-color: #ffffff;
+  //  background-clip: border-box;
+  //  border: 1px solid rgba(0, 0, 0, 0.2);
+  //  border-radius: .25rem;
+  //
+  //  tbody {
+  //    img {
+  //      width: 7vw;
+  //    }
+  //  }
+  //}
+
+
+  //.buttons {
+  //
+  //  button {
+  //    margin: 0 1vw 1.2vw 1vw;
+  //  }
+  //}
+}
+
+@media only screen and (max-width: 767px) {
+
+
+}

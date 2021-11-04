@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/login/login.component';
 import {NavComponent} from './components/shared/nav/nav.component';
 import {HttpClientModule} from "@angular/common/http";
@@ -15,7 +14,6 @@ import { FilterPipe } from './components/shared/filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     LoginComponent,
     NavComponent,
     CartComponent,

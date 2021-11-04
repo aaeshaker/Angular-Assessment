@@ -10,7 +10,6 @@ declare var $: any; //To use JQuery
 })
 export class ApiService {
 
-  public username!: string;
   public productList = <any>[];
 
   constructor(private _http: HttpClient) {

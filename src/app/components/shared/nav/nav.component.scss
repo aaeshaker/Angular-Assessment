@@ -31,4 +31,32 @@ nav {
   box-shadow: 0px 4px 6px rgb(0 0 0 / 16%);
 }
 
+//  Responsive
+
+@media only screen and (max-width: 1024px) {
+  .text {
+    font-size: 3vw;
+  }
+
+  .cart {
+
+    .fa-shopping-cart {
+      width: 4.2vw;
+    }
+
+    span {
+      top: -2.3vw;
+      right: -1.512445vw;
+      font-size: 1.2vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+  // Just for now because of time
+  nav {
+    display: none;
+  }
+}
 

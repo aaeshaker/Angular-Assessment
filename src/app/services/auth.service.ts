@@ -46,15 +46,13 @@ export class AuthService {
   }
 
   getCurrentUser() {
-    // @ts-ignore
-    return JSON.parse(localStorage.getItem('currentUser')).username;
+    return JSON.parse(localStorage.getItem('currentUser')!).username;
   }
 
   logout() {
     Emitters.authEmitter.emit(false);
     this._route.navigate(['/']).then();
-    // @ts-ignore
-    return JSON.parse(localStorage.clear());
+    return localStorage.setItem('currentUser', JSON.stringify({username: undefined}));
   }
 
 

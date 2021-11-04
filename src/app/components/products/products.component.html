@@ -34,7 +34,7 @@
         <!--  Products  -->
         <div class="row">
           <ng-container *ngFor="let productItem of filterCategory | filter: searchKey: 'title'">
-            <div class="col-md-3 mb-3">
+            <div class="col-xl-3 col-md-6 col-12 mb-3">
               <div class="card">
 
                 <div>
@@ -63,7 +63,7 @@
     <div class="admin">
       <ng-container *ngIf="username === 'admin'">
 
-        <div class="container-fluid">
+        <div class="container-fluid negative-container-fluid">
           <div class="card-table">
             <div class="card-product">
               <table class="table table-responsive">
@@ -104,7 +104,6 @@
               </table>
 
               <div class="buttons">
-                <!--<button (click)="deleteAllProducts()" class="btn btn-danger">Empty Products</button>-->
                 <button (click)="addNewProduct()" class="btn btn-success">Add Product</button>
               </div>
 

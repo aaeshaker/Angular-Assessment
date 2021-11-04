@@ -126,3 +126,125 @@
   }
 }
 
+//  Responsive
+
+@media only screen and (max-width: 1024px) {
+
+  .user {
+
+    ul {
+      li {
+        padding-right: 4vw;
+      }
+    }
+
+    .card {
+      padding: 2vw;
+
+      img {
+        width: 20vw;
+        height: 20vw;
+        margin-bottom: 2vw;
+      }
+
+      .card-text {
+        padding: 2vw 0;
+      }
+
+      .desc {
+        padding: 2vw 0;
+      }
+
+      button {
+        font-size: 2.2vw;
+      }
+
+    }
+
+  }
+
+  .admin {
+
+    .negative-container-fluid {
+      padding-right: 1vw;
+      padding-left: 1vw;
+    }
+
+    .card {
+      margin: 3vw;
+      //padding: 1.5vw 0 32vw 2vw;
+    }
+
+    .center {
+
+      img {
+        height: 40vw;
+        width: 60vw;
+        margin: 20px 0;
+      }
+
+
+      //.btn {
+      //  font-size: 14px !important;
+      //  margin-top: 20px !important;
+      //  font-weight: 400;
+      //  padding: 12px 72px;
+      //  border-radius: 3px !important;
+      //}
+    }
+
+    .card-table {
+      border: 1.5px solid rgba(0, 0, 0, 0.2);
+      border-radius: .25rem;
+
+      //tbody {
+      //  img {
+      //    width: 7vw;
+      //  }
+      //
+      //}
+    }
+
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+  .user {
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+
+      li {
+        padding-right: 0;
+      }
+    }
+
+    .card {
+      padding: 4vw;
+
+      img {
+        width: 40vw;
+        height: 40vw;
+        margin-bottom: 2vw;
+      }
+
+      .card-text {
+        padding: 4vw 0;
+      }
+
+      .desc {
+        padding: 3vw 0;
+      }
+
+      button {
+        font-size: 3.5vw;
+      }
+
+    }
+
+  }
+
+
+}
