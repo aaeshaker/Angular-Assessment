@@ -8,13 +8,19 @@ import {LoginComponent} from './components/login/login.component';
 import {NavComponent} from './components/shared/nav/nav.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CartComponent } from './components/cart/cart.component';
+import { ProductsComponent } from './components/products/products.component';
+import { FilterPipe } from './components/shared/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    NavComponent
+    NavComponent,
+    CartComponent,
+    ProductsComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

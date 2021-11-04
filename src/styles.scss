@@ -1,4 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+
+h4 {
+  font-size: clamp(18px, 2.3020833333333335vw, 22px);
+}
+
+h5 {
+  font-size: clamp(15px, 1vw, 22px);
+}
+
+h6 {
+  font-size: clamp(12px, 1vw, 18px);
+}
+
+p {
+  font-size: clamp(10px, .9vw, 15px);
+  color: grey;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -14,7 +58,7 @@
   z-index: 2;
 }
 
-.form-signin input[type="email"] {
+.form-signin input[type="text"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -25,3 +69,44 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.container-fluid {
+  padding-right: 5.729vw;
+  padding-left: 5.729vw;
+}
+
+/*---- Scroll bar "start"----*/
+::-webkit-scrollbar {
+  width: 0.3703703703703704vw; // 5px
+}
+
+::-webkit-scrollbar-thumb {
+  background: #212529;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/*--x-- Scroll bar "end"--x--*/
+
+.menu-padding {
+  padding-top: 7vw;
+}
+
+.active {
+  color: #212529;
+
+  h6 {
+    font-weight: bold;
+  }
+}
+
+.in-active {
+  color: grey;
+
+  h6 {
+    font-weight: 400;
+  }
+}
+
